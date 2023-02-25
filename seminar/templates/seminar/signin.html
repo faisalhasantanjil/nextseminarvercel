@@ -1,0 +1,17 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+<center>
+    <h1> Login to your account </h1>
+</center>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <label>Email : </label>
+        <input type="email" placeholder="Enter Your Email" name="email" required>
+        <label>Password : </label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        <button type="submit">Signin</button>
+
+        <p style="margin:auto"><a href="{% url 'signup' %}">Register Your Account</a></p>
+    </div>
+</form>
