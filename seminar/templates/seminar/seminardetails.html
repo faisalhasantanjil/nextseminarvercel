@@ -1,17 +1,20 @@
 {% extends 'seminar/main.html' %}
-
 {% load static %}
+
 {% block content %}
 {% if blog.image %}
 <img src="{{seminar.image.url}}" alt="">
 {% endif %}
 <p>{{seminar.name}}</p>
 <p>{{seminar.type}}</p>
-<p>{{seminar.start_date}}</p>
-<p>{{seminar.end_date}}</p>
+<p>{{seminar.start_date.date}}</p>
+<p>{{seminar.end_date.date}}</p>
 
+{% if registered_seminar is None %}
 <form action="" method="post">
     {% csrf_token %}
     <input type="submit" value="Register">
 </form>
+{% endif %}
+
 {% endblock content %}

@@ -6,12 +6,13 @@
     <img src="{{seminar.image.url}}" alt="">
     {% endif %}
     <p>{{seminar.name}}</p>
+    <p>{{seminar.organization}}</p>
     <p>{{seminar.type}}</p>
     <p>{{seminar.category}}</p>
     <p>{{seminar.start_date}}</p>
     <a href="{% url 'seminardetails' seminar.id %}"> See More</a>
+    <br>
     {% endfor %}
-
-
+    
 {% endblock content %}
 

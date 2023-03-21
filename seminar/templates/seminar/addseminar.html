@@ -1,0 +1,24 @@
+{% extends 'seminar/main.html' %}
+{% load django_bootstrap5 %}
+
+{% comment "" %}
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Save">
+</form>
+{% endblock content %}
+{% endcomment %}
+
+{% block content %}
+<div class="w-50 mx-auto">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Save">
+
+    </form>
+</div>
+
+{% endblock content %}

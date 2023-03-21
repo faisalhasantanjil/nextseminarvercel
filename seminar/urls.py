@@ -6,7 +6,13 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('signup/', views.signup, name='signup'),
     path('signin/', views.signin, name='signin'),
+    path('logout/', views.signout, name='signout'),
+    path('addseminar/', views.addseminar, name='addseminar'),
     path('seminar/<str:pk_test>', views.seminardetails, name='seminardetails'),
+    path('organizedseminar/<str:pk_test>',
+         views.organizedseminar, name='organizedseminar'),
+
+    path('myseminar/', views.myseminar, name='myseminar'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

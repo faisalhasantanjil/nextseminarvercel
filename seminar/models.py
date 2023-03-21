@@ -42,6 +42,11 @@ class Organization(models.Model):
     image = models.ImageField(blank=True, null=True,
                               upload_to='organization images')
 
+    class Meta:
+        permissions = (
+            ('can_add_seminar', 'can add seminar'),
+        )
+
     def __str__(self):
         return str(self.name)
 
@@ -71,7 +76,10 @@ class Seminar(models.Model):
     link = models.CharField(max_length=500, blank=True, null=True, default='')
 
     start_date = models.DateTimeField(blank=True, null=True)
+    start_time = models.TimeField(
+        blank=True, null=True, default='Not Mentioned')
     end_date = models.DateTimeField(blank=True, null=True)
+    end_time = models.TimeField(blank=True, null=True, default='Not Mentioned')
     length = models.IntegerField(blank=True, null=True, validators=[
                                  MaxValueValidator(10), MinValueValidator(1)])
     seat = models.IntegerField(blank=True, null=True)

@@ -2,11 +2,11 @@ Body {
     font-family: Calibri, Helvetica, sans-serif;
     width: 40%;
     margin: auto;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(218, 212, 212);
 }
 
 button {
-    background-color: #b4d3ca;
+    background-color: #403c3c;
     width: 100%;
     color: rgb(255, 255, 255);
     padding: 15px;
@@ -16,7 +16,7 @@ button {
 }
 
 form {
-    border: 3px solid #d7e5b5;
+    border: 3px solid #dadbd8;
 }
 
 input[type=email],
@@ -25,7 +25,7 @@ input[type=password] {
     margin: 8px 0;
     padding: 12px 20px;
     display: inline-block;
-    border: 2px solid rgb(193, 219, 211);
+    border: 2px solid rgb(242, 248, 246);
     box-sizing: border-box;
 }
 
@@ -42,5 +42,5 @@ button:hover {
 
 .container {
     padding: 25px;
-    background-color: rgb(211, 235, 244);
+    background-color: rgb(144 152 155);
 }
