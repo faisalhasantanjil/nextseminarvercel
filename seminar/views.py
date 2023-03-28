@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
+from .decorators import organization_access_only, user_access_only
 
 from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 # Create your views here.\
@@ -73,6 +74,7 @@ def signout(request):
     return redirect('signin')
 
 
+@organization_access_only()
 def addseminar(request):
     form = SeminarForm()
     #form.fields['start_date'].widget = DateTimePickerInput()
@@ -95,6 +97,7 @@ def organizedseminar(request, pk_test):
     pass
 
 
+@user_access_only()
 def myseminar(request):
     user = UserInformation.objects.get(id=request.user.id)
 
