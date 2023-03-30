@@ -10,9 +10,10 @@ urlpatterns = [
     path('addseminar/', views.addseminar, name='addseminar'),
     path('seminar/<str:pk_test>', views.seminardetails, name='seminardetails'),
     path('organizedseminar/<str:pk_test>',
-         views.organizedseminar, name='organizedseminar'),
+         views.organizedseminardetails, name='organizedseminardetails'),
 
     path('myseminar/', views.myseminar, name='myseminar'),
+    path('organizedseminar/', views.organizedseminar, name='organizedseminar'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

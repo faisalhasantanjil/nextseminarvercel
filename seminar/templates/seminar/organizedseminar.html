@@ -1,0 +1,18 @@
+{% extends 'seminar/main.html' %}
+{% load static %}
+
+{% block content %}
+    {% for seminar in seminars %}
+    {% if seminar.image %}
+    <img src="{{seminar.image.url}}" alt="">
+    {% endif %}
+    <p>{{seminar.name}}</p>
+    <p>{{seminar.organization}}</p>
+    <p>{{seminar.type}}</p>
+    <p>{{seminar.category}}</p>
+    <p>{{seminar.start_date}}</p>
+    <a href="{% url 'organizedseminardetails' seminar.id %}"> See More</a>
+    <br>
+    {% endfor %}
+    
+{% endblock content %}

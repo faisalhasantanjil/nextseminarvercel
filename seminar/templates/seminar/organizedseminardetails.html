@@ -10,11 +10,9 @@
 <p>{{seminar.start_date.date}}</p>
 <p>{{seminar.end_date.date}}</p>
 
-{% if registered_seminar is None %}
-<form action="" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Register">
-</form>
-{% endif %}
+<h2>Registered User</h2>
+{% for r_user in r_users %}
+<p>{{r_user.user}}</p>
+{% endfor %}
 
 {% endblock content %}

@@ -92,9 +92,17 @@ def addseminar(request):
     return render(request, 'seminar/addseminar.html', context)
 
 
-def organizedseminar(request, pk_test):
-    organization = Organization.objects.get(id=request.user.id)
-    pass
+def organizedseminar(request):
+    organization = Organization.objects.get(user=request.user.id)
+    seminars = Seminar.objects.filter(organization=organization.id)
+    for i in seminars:
+        print('------------------')
+        print(i.id)
+    context = {
+        'seminars': seminars
+
+    }
+    return render(request, 'seminar/organizedseminar.html', context)
 
 
 @user_access_only()
@@ -108,3 +116,17 @@ def myseminar(request):
         'seminars': seminars,
     }
     return render(request, 'seminar/myseminar.html', context)
+
+
+def organizedseminardetails(request, pk_test):
+    seminar = Seminar.objects.get(id=pk_test)
+    user = Organization.objects.get(user=request.user.id)
+    r_users = Registration.objects.filter(
+        seminar=seminar.id)
+    print(r_users)
+    context = {
+        'seminar': seminar,
+        'r_users': r_users,
+    }
+
+    return render(request, 'seminar/organizedseminardetails.html', context)
