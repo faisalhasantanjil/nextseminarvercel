@@ -1,0 +1,132 @@
+{% extends 'seminar/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<div class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+
+
+    <a class="navbar-brand px-3" href="#">Admin Panel</a>
+    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+
+
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="container-fluid">
+
+
+    <div class="row">
+
+
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse navbar-collapse">
+
+
+            <div class="position-sticky pt-3">
+
+
+                <ul class="nav flex-column">
+
+
+                    <li class="nav-item">
+
+
+                        <a class="nav-link active" aria-current="page" href="#">
+                            Dashboard
+                        </a>
+
+
+                    </li>
+                    {% if org_access %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Seminars
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/addseminar">Add Seminar</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href={% url 'organizedseminar' %}>Organized Seminar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+
+
+                        <a class="nav-link" href="#">
+                            Users
+                        </a>
+
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+
+                        <a class="nav-link" href="#">
+                            Products
+                        </a>
+
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+
+                        <a class="nav-link" href="#">
+                            Orders
+                        </a>
+
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+        </nav>
+
+
+
+        <main class="col-md-9 ms-md-auto col-lg-10 px-md-4">
+
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap">
+                <div class="w-50 mx-auto d-flex justify-content-center m-5">
+                    <div class="" style="width: 26rem;">
+                        {% if user_acc.image%}
+                        <img src="{{user_acc.image.url}}" class="card-img-top rounded-circle" alt="...">
+                        {% endif %}
+                        
+                        <div class="card card-body border-top-0">
+                            <h3 class="card-title mx-auto text-center ">{{user_acc.name}}</h3>
+                            <h5 class="card-text">type: {{user_acc.type}}</h5>
+                            <h5 class="card-text">location: {{user_acc.location}}</h5>
+                            <h5 class="card-text">About Organization: {{user_acc.descriptiion}}</h5>
+                            <h5 class="card-text">Email: {{user_acc.user.email}}</h5>
+                            
+                            <a href={% url "organization_info_update" %} class="btn btn-secondary">Update Your Inforamtion</a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>   
+        </main>
+    </div>
+</div>
+{% endblock content %}

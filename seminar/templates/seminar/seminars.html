@@ -1,0 +1,37 @@
+{% extends 'seminar/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <p class="lead m-2">Explore All Events</p>
+  <div class="row mx-3 justify-content-center">
+    {% for seminar in seminars %}
+    <div class="col-lg-4 col-md-6">
+      <div class="card mx-auto mx-2 my-3 rounded border-0" style="width: 100%;">
+        {% if seminar.image %}
+        <img src="{{seminar.image.url}}" alt="" style="height:180px;" class="img-fluid w-75 mx-auto rounded-pill ">
+        {% endif %}
+        <p><small>{{seminar.type}}</small></p>
+        <div class="border border-top-0">
+          <div class="card-body ">
+            <h5 class="card-title">{{seminar.name |truncatechars:30}}</h5>
+            <p class="card-text">{{seminar.category}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"></li>
+            <li class="list-group-item">Organized By: {{seminar.organization| truncatechars:20}}</li>
+            <li class="list-group-item">{{seminar.start_date.date}}</li>
+          </ul>
+          <div class="card-body">
+            <button> <a href="{% url 'seminardetails' seminar.id %}" class="text-decoration-none link-dark"> See
+                More</a></button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

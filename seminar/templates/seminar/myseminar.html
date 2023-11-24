@@ -2,17 +2,121 @@
 {% load static %}
 
 {% block content %}
+<p class="h2 text-center mt-5"> Events You registerd</p>
+
+<div class="table-responsive d-flex justify-content-center w-50 mx-auto d-none d-sm-block">
+    <table class="table ">
+
+        <tbody>
+            {% for i in seminars %}
+
+            <tr class="">
+                <td class="">
+                    {% if i.seminar.image %}
+                    <img src="{{i.seminar.image.url}}" class=" rounded-start m-5 mx-auto d-flex justify-content-center"
+                        alt="..." style="height: 175px; width: 200px; ;">
+                </td>{% endif %}
+                <td class="">
+                    <div class="card-body position-relative">
+                        <p><small>{{i.seminar.type}}</small></p>
+                        <h5 class="card-title">{{i.seminar.name| truncatechars:35}}</h5>
+                        <p class="card-text">Category: {{i.seminar.category}}</p>
+                        <p class="card-text">Location: {{i.seminar.location}}</p>
+                        <p class="card-text"><small class="text-muted">Organized By:
+                            </small><b>{{i.seminar.organization}}</b>
+                        </p>
+
+                        <p class="card-text"><small class="text-muted">From </small>{{i.seminar.start_date.date}}
+                            {{i.seminar.start_time}} ~ {{i.seminar.end_date.date}} {{i.seminar.end_time}} </p>
+                        <div class="">
+                            <p><a href="{% url 'seminardetails' i.seminar.id %}"
+                                    class="stretched-link text-decoration-none"></a></p>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="table-responsive d-flex justify-content-center w-100 mx-auto d-block d-sm-none">
+    <table class="table ">
+
+        <tbody>
+            {% for i in seminars %}
+
+            <tr class="">
+                <td class="">
+                    {% if i.seminar.image %}
+                    <img src="{{i.seminar.image.url}}" class=" rounded-start m-5 mx-auto d-flex justify-content-center"
+                        alt="..." style="height: 155px; width: 180px; ;">
+                </td>{% endif %}
+            </tr>
+            <tr class="">
+                <td class="">
+                    <div class="card-body position-relative">
+                        <p><small>{{i.seminar.type}}</small></p>
+                        <h5 class="card-title">{{i.seminar.name| truncatechars:35}}</h5>
+                        <p class="card-text">Category: {{i.seminar.category}}</p>
+                        <p class="card-text">Location: {{i.seminar.location}}</p>
+                        <p class="card-text"><small class="text-muted">Organized By:
+                            </small><b>{{i.seminar.organization}}</b>
+                        </p>
+
+                        <p class="card-text"><small class="text-muted">From </small>{{i.seminar.start_date.date}}
+                            {{i.seminar.start_time}} ~ {{i.seminar.end_date.date}} {{i.seminar.end_time}} </p>
+                        <div class="">
+                            <p><a href="{% url 'seminardetails' i.seminar.id %}"
+                                    class="stretched-link text-decoration-none"></a></p>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% comment "" %}
+<div class="row">
     {% for i in seminars %}
-    {% if i.seminar.image %}
-    <img src="{{i.seminar.image.url}}" alt="">
-    {% endif %}
-    <p>{{i.seminar.name}}</p>
-    <p>{{i.seminar.organization}}</p>
-    <p>{{i.seminar.type}}</p>
-    <p>{{i.seminar.category}}</p>
-    <p>{{i.seminar.start_date}}</p>
-    <a href="{% url 'seminardetails' i.seminar.id %}"> See More</a>
-    <br>
+    <div class="">
+        <div class="col col-12 d-flex justify-content-center w-100">
+            <div class=" mb-3" style="">
+                <div class="row g-2 m-3">
+                    {% if i.seminar.image %}
+                    <div class="col-lg-6 col-md-12 ">
+                        <img src="{{i.seminar.image.url}}" class=" rounded-start m-5 mx-auto justify-content-center"
+                            alt="..." style="height: 175px; width: 200px; ;">
+                    </div>
+                    {% endif %}
+
+                    <div class=" col-lg-6 col-md-12 ">
+                        <div class="card-body">
+                            <p><small>{{i.seminar.type}}</small></p>
+                            <h5 class="card-title">{{i.seminar.name| truncatechars:35}}</h5>
+                            <p class="card-text">Category: {{i.seminar.category}}</p>
+                            <p class="card-text">Location: {{i.seminar.location}}</p>
+                            <p class="card-text"><small class="text-muted">Organized By:
+                                </small><b>{{i.seminar.organization}}</b>
+                            </p>
+
+                            <p class="card-text"><small class="text-muted">From </small>{{i.seminar.start_date.date}}
+                                {{i.seminar.start_time}} ~ {{i.seminar.end_date.date}} {{i.seminar.end_time}} </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endfor %}
-    
+
+
+
+</div>
+{% endcomment %}
 {% endblock content %}

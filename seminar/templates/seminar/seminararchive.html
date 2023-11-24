@@ -1,0 +1,18 @@
+{% extends 'seminar/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container w-75 mx-auto m-3 pt-5">
+    <section>
+        <h3>{{seminar.name}}</h3>
+    </section>
+
+    <br>
+    <br>
+    <section> 
+        {{seminar.archive|safe}}
+    </section>
+</div>
+{% endblock content %}
+
+
+

@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block content %}
+<div class="container">
     {% for seminar in seminars %}
     {% if seminar.image %}
-    <img src="{{seminar.image.url}}" alt="">
+    <img src="{{seminar.image.url}}" alt="" class="img-fluid">
     {% endif %}
     <p>{{seminar.name}}</p>
     <p>{{seminar.organization}}</p>
@@ -14,5 +15,7 @@
     <a href="{% url 'organizedseminardetails' seminar.id %}"> See More</a>
     <br>
     {% endfor %}
-    
+</div>
+
+
 {% endblock content %}

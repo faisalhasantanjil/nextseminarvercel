@@ -1,8 +1,8 @@
-Body {
+/*Body {
     font-family: Calibri, Helvetica, sans-serif;
     width: 40%;
     margin: auto;
-    background-color: rgb(218, 212, 212);
+    background-color: rgb(255, 255, 255);
 }
 
 button {
@@ -10,13 +10,14 @@ button {
     width: 100%;
     color: rgb(255, 255, 255);
     padding: 15px;
-    margin: 10px 0px;
+    margin: auto;
     border: none;
+    border-radius: 10%;
     cursor: pointer;
 }
 
 form {
-    border: 3px solid #dadbd8;
+    border: 0px solid #f0f1ed;
 }
 
 input[type=email],
@@ -25,7 +26,7 @@ input[type=password] {
     margin: 8px 0;
     padding: 12px 20px;
     display: inline-block;
-    border: 2px solid rgb(242, 248, 246);
+    border: 2px solid rgb(255, 255, 255);
     box-sizing: border-box;
 }
 
@@ -42,5 +43,20 @@ button:hover {
 
 .container {
     padding: 25px;
-    background-color: rgb(144 152 155);
+    background-color: rgb(206, 206, 206);
 }
+
+.slide-right2 {
+    animation: 4s slide-right;
+    margin-right: 10%;
+}
+
+@keyframes slide-right {
+    from {
+        margin-right: -100%;
+    }
+
+    to {
+        margin-right: 0%;
+    }
+}*/

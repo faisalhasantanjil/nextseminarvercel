@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 
@@ -89,6 +90,8 @@ class Seminar(models.Model):
 
     organization = models.ForeignKey(
         Organization, on_delete=models.CASCADE, blank=True, null=True)
+    archive = RichTextUploadingField(
+        blank=True, null=True)
 
     def __str__(self):
         return str(self.name)

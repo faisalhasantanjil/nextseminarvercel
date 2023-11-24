@@ -1,6 +1,7 @@
 {% load static %}
-<div class="containeer">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<div class="">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light mx-auto" style="background-color: #dde7e7;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">NextSeminar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -10,11 +11,18 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href={% url "about_us" %}>About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
+                    {% if user_access %}
+                    <li class="nav-item">
+                        <a class="nav-link" href={% url 'myseminar' %}>My Seminars</a>
+                    </li>
+                    {% endif %}
+
+                    {% if org_access %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,21 +31,45 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/addseminar">Add Seminar</a></li>
                             <li><a class="dropdown-item" href={% url 'myseminar' %}>My Seminars</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href={% url 'organizedseminar' %}>Organized Seminar</a></li>
-                          </ul>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href={% url 'organizedseminar' %}>Organized Seminar</a>
+                            </li>
+                        </ul>
                     </li>
-                    <ul class="float-right">
-                        <a class="nav-link" href="#">{{user}}</a>
-                    </ul>
+                    {% endif %}
                 </ul>
-                
             </div>
-            <div class=" collapse navbar-collapse flex-row-reverse" id="navbarNavDropdown">
-                
-                <p class="mx-3 link-dark text-decoration-none"><a href={% url 'signout' %} class="link-dark text-decoration-none">logout</a></p>
-                <p class="mx-3">{{user}}</p>
+
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+
+
+                {% if user.is_authenticated %}
+                <button type="button" class="mx-3 btn btn-dark btn-sm" disabled="disabled">
+                    <p class="">{{user}}</p>
+                </button>
+                <button type="button" class=" ml-1 btn btn-sm btn-outline-secondary rounded-pill mx-2"
+                    style="box-shadow: 0 4px 8px 0 rgba(15, 13, 13, 0.2);">
+                    <a href={% url 'user_info' %} class="link-dark text-decoration-none">View Your Profile</a>
+                </button>
+                <button type="button" class=" ml-1 btn btn-sm btn-outline-secondary rounded-pill"
+                    style="box-shadow: 0 4px 8px 0 rgba(15, 13, 13, 0.2);">
+                    <a href={% url 'signout' %} class="link-dark text-decoration-none">Logout</a>
+                </button>
+
+                {% else %}
+                <button type="button" class="btn btn-outline-light ml-1 " style="box-shadow: 0 4px 8px 0 rgba(53, 52, 52, 0.2);
+">
+
+                    <a href={% url 'signin' %} class="link-dark text-decoration-none">Login</a>
+                </button>
+                {% endif %}
+
+
             </div>
+
         </div>
     </nav>
-</div> 
+</div>

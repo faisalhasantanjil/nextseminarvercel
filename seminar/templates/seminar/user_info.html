@@ -1,0 +1,22 @@
+{% extends 'seminar/main.html' %}
+{% load static%}
+
+{% block content %}
+<div class="w-50 mx-auto d-flex justify-content-center m-5">
+    <div class="" style="width: 26rem;">
+        {% if user_acc.image%}
+        <img src="{{user_acc.image.url}}" class="card-img-top rounded-circle" alt="...">
+        {% endif %}
+        
+        <div class="card card-body border-top-0">
+            <h3 class="card-title mx-auto text-center ">{{user_acc.name}}</h3>
+            <h5 class="card-text">Proffesion: {{user_acc.profession}}</h5>
+            <h5 class="card-text">Organization: {{user_acc.organization}}</h5>
+            <h5 class="card-text">Email: {{user_acc.organization}}</h5>
+            <a href={% url "myseminar" %} class="btn btn-secondary mx-auto m-2 card-text">Registered Events</a>
+            <a href={% url "user_info_update" %} class="btn btn-secondary">Update Your Inforamtion</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

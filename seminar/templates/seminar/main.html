@@ -11,7 +11,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
-    
+
     {% block title %}
     <title>Join the next Seminar</title>
     {% endblock title %}
@@ -19,14 +19,35 @@
 </head>
 
 <body>
+    
+    <div class="">
+        <div class="pb-5 ">
+            {% block navbar %}
+            {% include 'seminar/navbar.html'  %}
+            {% endblock navbar %}
+        </div>
 
 
-    {% include 'seminar/navbar.html' %}
-    <div class="mx-auto w-75">
-        {% block content %}
+        <div>
+            <div class="mx-auto mx-3 mt-2">
+                {% block content %}
 
-        {% endblock content %}
+                {% endblock content %}
+                
+            </div>
+            <div>
+                
+                {% block footer %}
+                {% include 'seminar/footer.html' %}
+                {% endblock footer %}
+
+
+            </div>
+            
+        </div>
+
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
         crossorigin="anonymous"></script>

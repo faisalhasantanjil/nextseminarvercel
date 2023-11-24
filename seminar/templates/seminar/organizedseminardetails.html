@@ -2,17 +2,52 @@
 {% load static %}
 
 {% block content %}
-{% if seminar.image %}
-<img src="{{seminar.image.url}}" alt="">
-{% endif %}
-<p>{{seminar.name}}</p>
-<p>{{seminar.type}}</p>
-<p>{{seminar.start_date.date}}</p>
-<p>{{seminar.end_date.date}}</p>
+<div class="container">
 
-<h2>Registered User</h2>
-{% for r_user in r_users %}
-<p>{{r_user.user}}</p>
-{% endfor %}
+    <div class="w-75 mx-auto">
+        {% if seminar.image %}
+        <img src="{{seminar.image.url}}" alt="" class="img-fluid">
+        {% endif %}
+        <p>{{seminar.name}}</p>
+        <p>{{seminar.type}}</p>
+        <p>{{seminar.start_date.date}}</p>
+        <p>{{seminar.end_date.date}}</p>
+        <p>{{seminar.seat}}</p>
+    </div>
 
+    <div class="w-75 mx-auto">
+        <p class="lead w-25 mx-auto">List of Registered User</p>
+    </div>
+
+
+
+    <table class="table table-striped w-75 mx-auto">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+                <th scope="col">Date</th>
+                <th scope="col">Cancel Registration</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r_user in r_users %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{r_user.user}}</td>
+                <td>{{r_user.date}}</td>
+                <td>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" value="{{r_user.id}}" name='id_submit'>Cancel Registration</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</div>
 {% endblock content %}

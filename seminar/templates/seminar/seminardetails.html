@@ -1,6 +1,6 @@
 {% extends 'seminar/main.html' %}
 {% load static %}
-
+{% comment "" %}
 {% block content %}
 {% if seminar.image %}
 <img src="{{seminar.image.url}}" alt="">
@@ -10,11 +10,70 @@
 <p>{{seminar.start_date.date}}</p>
 <p>{{seminar.end_date.date}}</p>
 
-{% if registered_seminar is None %}
-<form action="" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Register">
-</form>
-{% endif %}
+
+
+{% endblock content %}
+{% endcomment %}
+
+
+
+
+{% block content %}
+<div class="container">
+    <div class="card mb-3" style="">
+        <div class="row g-2 m-3">
+            {% if seminar.image %}
+            <div class="col-lg-6 col-md-12 ">
+
+                <img src="{{seminar.image.url}}" class="img-fluid rounded-start w-75 m-5" alt="..." style="height:275px;">
+            </div>
+            {% endif %}
+
+            <div class=" col-lg-6 col-md-12 ">
+                <div class="card-body">
+                    <p><small>{{seminar.type}}</small></p>
+                    <h5 class="card-title">{{seminar.name}}</h5>
+                    <p class="card-text">Category: {{seminar.category}}</p>
+                    <p class="card-text">{{seminar.location}}</p>
+                    <p class="card-text"><small class="text-muted">Organized By: </small><b>{{seminar.organization}}</b>
+                    </p>
+
+                    <p class="card-text"><small class="text-muted">Useful Link: </small>{{seminar.link}} </p>
+
+                    <p class="card-text"><small class="text-muted">From </small>{{seminar.start_date.date}}
+                        {{seminar.start_time}} ~ {{seminar.end_date.date}} {{seminar.end_time}} </p>
+
+                    <p class="card-text"><small class="text-muted">Seat Available:</small>{{seminar.seat}}</p>
+                    {% if registered_seminar is None %}
+                    {% if seminar.seat %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Register">
+
+                    </form>
+                    {% endif %}
+
+                    {% endif %}
+                    {% if registered_seminar%}
+                    <button type="button" class="btn btn-success">Successfully Registered</button>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row g-2 m-3 w-75 mx-auto">
+            <p class="card-text">{{seminar.description}}</p>
+        </div>
+        {% if seminar.archive %}
+        <div class="m-2 mx-auto">
+            <button type="" class='rounded-3'><a href="{% url 'seminararchive' seminar.id %}" class="text-decoration-none link-dark">See More about the Event</a></button>
+        </div>
+        {% endif %}
+        
+    </div>
+</div>
+
+
 
 {% endblock content %}

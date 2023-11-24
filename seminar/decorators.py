@@ -3,17 +3,22 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import *
+from django.contrib.auth.decorators import login_required
+import time
 
 
 def is_organization(user):
+    #print(user.id)
     authorize = Organization.objects.filter(user=user.id)
-    print(authorize)
+    #print(authorize)
     if authorize:
         return True
     return False
 
+
 def is_user(user):
     authorize = UserInformation.objects.filter(user=user.id)
+    print("authorize: ")
     print(authorize)
     if authorize:
         return True
