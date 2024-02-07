@@ -50,10 +50,18 @@
                 <button type="button" class="mx-3 btn btn-dark btn-sm" disabled="disabled">
                     <p class="">{{user}}</p>
                 </button>
+                {% if user_access %}
                 <button type="button" class=" ml-1 btn btn-sm btn-outline-secondary rounded-pill mx-2"
                     style="box-shadow: 0 4px 8px 0 rgba(15, 13, 13, 0.2);">
                     <a href={% url 'user_info' %} class="link-dark text-decoration-none">View Your Profile</a>
                 </button>
+                {% endif %}
+                {% if org_access %}
+                <button type="button" class=" ml-1 btn btn-sm btn-outline-secondary rounded-pill mx-2"
+                    style="box-shadow: 0 4px 8px 0 rgba(15, 13, 13, 0.2);">
+                    <a href={% url 'organization_info' %} class="link-dark text-decoration-none">View Your Profile</a>
+                </button>
+                {% endif %}
                 <button type="button" class=" ml-1 btn btn-sm btn-outline-secondary rounded-pill"
                     style="box-shadow: 0 4px 8px 0 rgba(15, 13, 13, 0.2);">
                     <a href={% url 'signout' %} class="link-dark text-decoration-none">Logout</a>

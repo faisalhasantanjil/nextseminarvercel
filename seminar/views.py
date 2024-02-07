@@ -162,6 +162,26 @@ def seminardetails(request, pk_test):
 
     return render(request, 'seminar/seminardetails.html', context)
 
+# Cancel Registration
+def cancelRegistration(request, pk_test):
+    seminar = Seminar.objects.get(id=pk_test)
+    user = UserInformation.objects.filter(user=request.user.id).first()
+    registered_seminar=False
+    
+    if request.method == 'POST':
+        delete_regestration = get_object_or_404(Registration,seminar=seminar.id,user=user.id)
+        delete_regestration.delete()
+        seminar.seat += 1
+        seminar.save()
+        return redirect('seminars')
+
+    context = {
+        'seminar': seminar,
+        'registered_seminar': registered_seminar,
+    }
+
+    return render(request, 'seminar/seminardetails.html', context)
+
 # seminar archive . Report on the seminar
 
 
@@ -229,8 +249,8 @@ def organizedseminar(request):
 @login_required(login_url='signin')
 @organization_access_only()
 def organizedseminardetails(request, pk_test):
-    seminar = Seminar.objects.get(id=pk_test)
-    user = Organization.objects.get(user=request.user.id)
+    org = Organization.objects.get(user=request.user.id)
+    seminar = get_object_or_404(Seminar,id=pk_test,organization=org)
     r_users = Registration.objects.filter(
         seminar=seminar.id)
     if request.method == 'POST':
@@ -309,3 +329,21 @@ def organization_info_update(request):
 
 def about_us(request):
     return render(request,'seminar/about.html')    
+
+
+@login_required(login_url='signin')
+@organization_access_only()
+def update_seminar_details(request,pk_test):
+    org = Organization.objects.get(user=request.user.id)
+    seminar = get_object_or_404(Seminar,id=pk_test,organization=org)
+    form = SeminarForm(request.POST or None, request.FILES or None, instance=seminar)
+    if form.is_valid():
+        form.save()
+        return redirect('organizedseminar')
+
+
+    context={
+        'seminar':seminar,
+        'form':form,
+    }
+    return render(request, 'seminar/update_seminar_details.html', context )

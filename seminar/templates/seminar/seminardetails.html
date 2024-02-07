@@ -1,21 +1,5 @@
 {% extends 'seminar/main.html' %}
 {% load static %}
-{% comment "" %}
-{% block content %}
-{% if seminar.image %}
-<img src="{{seminar.image.url}}" alt="">
-{% endif %}
-<p>{{seminar.name}}</p>
-<p>{{seminar.type}}</p>
-<p>{{seminar.start_date.date}}</p>
-<p>{{seminar.end_date.date}}</p>
-
-
-
-{% endblock content %}
-{% endcomment %}
-
-
 
 
 {% block content %}
@@ -55,7 +39,11 @@
 
                     {% endif %}
                     {% if registered_seminar%}
-                    <button type="button" class="btn btn-success">Successfully Registered</button>
+                    <button type="button" class="btn btn-success m-2">Successfully Registered</button>
+                    <form action="{% url "cancelRegistration" seminar.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger m-2">Cancel Registration</button>
+                    </form>
                     {% endif %}
 
 

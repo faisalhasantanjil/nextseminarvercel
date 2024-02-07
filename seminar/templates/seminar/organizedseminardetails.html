@@ -14,6 +14,9 @@
         <p>{{seminar.end_date.date}}</p>
         <p>{{seminar.seat}}</p>
     </div>
+    <div class="m-2 mx-auto d-flex justify-content-center">
+        <button type="" class='rounded-3'><a href="{% url 'update_seminar_details' seminar.id %}" class="text-decoration-none link-dark">Edit Information</a></button>
+    </div>
 
     <div class="w-75 mx-auto">
         <p class="lead w-25 mx-auto">List of Registered User</p>

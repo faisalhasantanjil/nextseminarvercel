@@ -12,6 +12,7 @@ urlpatterns = [
     path('logout/', views.signout, name='signout'),
     path('addseminar/', views.addseminar, name='addseminar'),
     path('seminar/<str:pk_test>', views.seminardetails, name='seminardetails'),
+    path('cancel_registration/<str:pk_test>', views.cancelRegistration, name='cancelRegistration'),
     path('organizedseminar/<str:pk_test>',
          views.organizedseminardetails, name='organizedseminardetails'),
 
@@ -24,6 +25,7 @@ urlpatterns = [
     path('organization_info', views.organization_info, name='organization_info'),
     path('organization_info_update', views.organization_info_update, name='organization_info_update'),
     path('about', views.about_us, name='about_us'),
+    path('update_seminar_details/<str:pk_test>', views.update_seminar_details, name='update_seminar_details'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
