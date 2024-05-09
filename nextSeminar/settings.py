@@ -27,8 +27,8 @@ with open('secret_key.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-#ALLOWED_HOSTS = ['localhost','1.27.0.0.1']
+#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 # Application definition
