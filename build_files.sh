@@ -1,4 +1,4 @@
 echo 'BUILD START'
-pip install -r requirements.txt
+pip install -r requirement.txt
 python3.10 manage.py collectstatic
 echo 'BUILD END'
